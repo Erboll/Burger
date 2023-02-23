@@ -1,0 +1,15 @@
+.ingredient{
+    width: 170px;
+    height: 70px;
+    padding-left: 15px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+img {
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+}
