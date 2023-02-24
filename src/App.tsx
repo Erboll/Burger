@@ -31,7 +31,15 @@ function App() {
   ]);
   const salad = 'Salad';
   const cheese = 'Cheese';
-  const meat = 'Meat'
+  const meat = 'Meat';
+
+  const getPrice = (ingName:string) => {
+    const ingPrice = INGREDIENTS.find(i => i.name === ingName);
+    if (ingPrice) {
+      return ingPrice.price
+    }
+    return 30
+  }
 
   const changeCount = (ingName: string) => {
     setIngredients(prevState => {
@@ -50,6 +58,17 @@ function App() {
     }
     return 0
   }
+  const onDelete = (ingName:string) => {
+    setIngredients(prevState => {
+      return prevState.map(inCount => {
+        if (inCount.name === ingName) {
+          return {...inCount , count: 0}
+        } return inCount
+
+      })
+    })
+  }
+
 
 
   return (
@@ -60,13 +79,21 @@ function App() {
           <div className="img-btn">
             {INGREDIENTS.map((ingredient) => (
               <IngredientComp
+                onDelete = {() =>  onDelete(ingredient.name)}
                 onButtonClick={() => changeCount(ingredient.name)}
                 image={ingredient.img}
                 name={ingredient.name}
                 count={getCount(ingredient.name)}
-                key={Math.random()}/>
+                price={getPrice(ingredient.name)}
+                totalPrice={getCount(ingredient.name) * getPrice(ingredient.name)}
+                key={Math.random()}
+              >
+                <button onClick={() => onDelete(ingredient.name)}>X</button>
+
+              </IngredientComp>
             ))}
           </div>
+
         </div>
       </div>
       <div className="burger-half">

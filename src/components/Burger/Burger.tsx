@@ -4,6 +4,7 @@ import './Burger.css'
   saladBurger?: string;
   cheeseBurger?:string;
   meatBurger?:string;
+  price?:number
  }
 
 
@@ -19,6 +20,7 @@ const Burger:React.FC<Props> = (props) => {
         <div className={props.cheeseBurger}></div>
         <div className={props.meatBurger}></div>
         <div className="BreadBottom"></div>
+        <div>{props.price}</div>
       </div>
   );
 };
